@@ -10,14 +10,19 @@
 
 /* REGRAS GERAIS */
 header{
-    background-color: var(--bg-primary);
+    background-color: rgba(29, 29, 31, 0.7); 
+    backdrop-filter: blur(5px);
     color: var(--text-light);
     height: fit-content;
     position: sticky;
     top: 0;
     z-index: 1;
     padding: 12px 0;
-    opacity: 0.95;
+    transition: background-color 0.5s ease, backdrop-filter 0.5s ease;
+}
+
+header.scrolled {
+    backdrop-filter: blur(10px); /* Efeito de desfoque mais intenso */
 }
 
 header nav ul{
@@ -181,4 +186,24 @@ main .iphone-section .text-wrapper{
     flex-direction: column;
     align-items: center;
     margin-top: 51px;
+}
+
+
+.main-section .text-wrapper,
+.spirited-section > div,
+.iphone-section .text-wrapper {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px); /* CORREÇÃO APLICADA AQUI */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Estado final (visível).
+  A classe '.visible' remove o deslocamento vertical (translateY(0)), 
+  mas MANTÉM a regra de centralização horizontal (translateX(-50%)).
+*/
+.main-section .text-wrapper.visible,
+.spirited-section > div.visible,
+.iphone-section .text-wrapper.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0); /* CORREÇÃO APLICADA AQUI */
 }
